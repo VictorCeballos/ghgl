@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using ghgl.Properties;
+using System.Runtime.InteropServices;
 
 namespace ghgl
 {
@@ -37,9 +38,10 @@ void main() {
         {
             get
             {
-                var assembly = System.Reflection.Assembly.GetExecutingAssembly();
-                var stream = assembly.GetManifestResourceStream("ghgl.resources.GLSL_Component_24x24.png");
-                return new System.Drawing.Bitmap(stream);
+                //var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+                //var stream = assembly.GetManifestResourceStream("ghgl.Resources.GLSL_Component_24x24.png");
+                //return new System.Drawing.Bitmap(stream);
+                return Resources.GLSL_Component_24x24;
             }
         }
 

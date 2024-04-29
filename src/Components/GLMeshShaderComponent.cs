@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Runtime.InteropServices;
+using ghgl.Properties;
 using Grasshopper.Kernel;
 
 namespace ghgl
@@ -51,9 +52,10 @@ void main() {
         {
             get
             {
-                var assembly = System.Reflection.Assembly.GetExecutingAssembly();
-                var stream = assembly.GetManifestResourceStream("ghgl.resources.GLSL_MeshComponent_24x24.png");
-                return new Bitmap(stream);
+                //var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+                //var stream = assembly.GetManifestResourceStream("ghgl.Resources.GLSL_MeshComponent_24x24.png");
+                //return new Bitmap(stream);
+                return Resources.GLSL_MeshComponent_24x24;
             }
         }
 

@@ -1,29 +1,68 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetExt>.gha</TargetExt>
-    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform(windows))">net7.0-windows</TargetFrameworks>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <RhinoPluginType>gha</RhinoPluginType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWindowsForms>True</UseWindowsForms>
   </PropertyGroup>
-  <PropertyGroup Condition="$(Configuration) == 'Release' and $(TargetFramework) == 'net48'">
-    <OutputPath>..\dist\</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-  </PropertyGroup>
-  <ItemGroup Condition="$(TargetFramework) == 'net48'">
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Net.Http" />
+
+  <ItemGroup>
+    <Reference Include="RhinoCommon">
+      <HintPath>C:\Program Files\Rhino 8\System\RhinoCommon.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Rhino.UI">
+      <HintPath>C:\Program Files\Rhino 8\System\Rhino.UI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Eto">
+      <HintPath>C:\Program Files\Rhino 8\System\Eto.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Ed.Eto">
+      <HintPath>C:\Program Files\Rhino 8\System\Ed.Eto.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Grasshopper">
+      <HintPath>C:\Program Files\Rhino 8\Plug-ins\Grasshopper\Grasshopper.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="GH_IO">
+      <HintPath>C:\Program Files\Rhino 8\Plug-ins\Grasshopper\GH_IO.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
+  </ItemGroup>
+  
   <ItemGroup>
     <EmbeddedResource Include="resources\*.png" />
     <EmbeddedResource Include="resources\*.html" />
   </ItemGroup>
+  
   <ItemGroup>
-    <PackageReference Include="Grasshopper" Version="8.1.23325.13001" />
-    <PackageReference Include="System.Text.Json" Version="7.0.0" ExcludeAssets="runtime" />
+    <Compile Remove="tests\**" />
+    <EmbeddedResource Remove="tests\**" />
+    <None Remove="tests\**" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>
